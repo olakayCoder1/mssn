@@ -50,7 +50,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(max_length=100, null=True , blank=True )
     last_name = models.CharField(max_length=100, null=True , blank=True )
     phone = models.CharField(max_length=20 , null=True , blank=True ) 
-    image = models.ImageField(upload_to=upload_to , default='profiles/default-image.png', null=True , blank=True)
+    image = models.ImageField(upload_to=upload_to , default='profiles/image-default.png', null=True , blank=True)
     created_at = models.DateTimeField(default=timezone.now)
     auth_provider = models.CharField(max_length=10, choices=AUTH_PROVIDERS , default='email')
     updated_at = models.DateTimeField(auto_now=True) 
@@ -68,10 +68,44 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 
 
+class CommitteePosition(models.Model):
+    public_id = models.CharField(max_length=10 , null=True , blank=True)
+    name = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
+class Committee(models.Model):
+    USER_GENDER = (
+        ('male','male'),
+        ('female','female')
+    )
+    public_id = models.CharField(max_length=10 , null=True , blank=True)
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    position = models.ForeignKey(
+        CommitteePosition , 
+        on_delete=models.CASCADE,
+        help_text=_("The post of this committee has") 
+    )
+    gender = models.CharField(
+        max_length=10,
+        choices=USER_GENDER,
+        null=True, blank=True ,
+    )
+    facebook = models.URLField(null=True, blank=True)
+    twitter = models.URLField(null=True, blank=True)
+    linkedin = models.URLField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+
 
 class TokenActivation(models.Model):
+    public_id = models.CharField(max_length=10 , null=True , blank=True)
     user_id = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     token = models.CharField(max_length=150)
     time = models.DateTimeField(auto_now_add=True)
     email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 

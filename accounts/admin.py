@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomUser  ,TokenActivation 
+from .models import CustomUser  ,TokenActivation  ,  Committee , CommitteePosition 
 from django.contrib.auth.admin import UserAdmin
 
 
@@ -24,4 +24,6 @@ class CustomUserAdminConfig(UserAdmin):
 
 admin.site.register(CustomUser, CustomUserAdminConfig) 
 admin.site.register(TokenActivation)
+admin.site.register(CommitteePosition)
+admin.site.register(Committee)
    

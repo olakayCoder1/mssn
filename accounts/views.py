@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from post.models import Post
 # Create your views here.
 
 
@@ -18,8 +18,6 @@ def forget_password(request):
     return render(request , 'accounts/forget-password.html')
 
 
-def home(request):
-    return render(request , 'home.html')
 
 
 

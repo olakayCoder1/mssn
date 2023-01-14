@@ -22,7 +22,9 @@ from accounts.views import feedback , faq
 
 urlpatterns = [
     path('superuser/', admin.site.urls),
-    path('', include('accounts.urls')),  
+    path('account', include('accounts.urls')),  
+    path('', include('client.urls')),  
+    path('posts/', include('post.urls')),  
     path('feedback', feedback , name='feedback'),   
     path('faq', faq , name='faq'),    
     path('about', faq , name='about'),    
