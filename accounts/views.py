@@ -7,6 +7,18 @@ from django.shortcuts import render
 
 
 def login_view(request):
+    return render(request , 'accounts/login.html')
+
+
+def register(request):
+    return render(request , 'accounts/register.html')
+
+
+def forget_password(request):
+    return render(request , 'accounts/forget-password.html')
+
+
+def home(request):
     return render(request , 'home.html')
 
 
