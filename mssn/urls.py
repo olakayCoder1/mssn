@@ -18,15 +18,23 @@ from django.urls import include, path , re_path
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve 
-from accounts.views import feedback , faq  
+from client.views import feedback , faq   , programs , donation
 
 urlpatterns = [
     path('superuser/', admin.site.urls),
-    path('', include('accounts.urls')),  
+    path('account', include('accounts.urls')),  
+    path('', include('client.urls')),          
+    path('posts/', include('post.urls')),  
     path('feedback', feedback , name='feedback'),   
     path('faq', faq , name='faq'),    
+    path('programs', programs , name='programs'),    
+    path('donation', donation , name='donation'),    
     path('about', faq , name='about'),    
     re_path(r'^media/(?P<path>.*)$', serve , {'document_root':settings.MEDIA_ROOT}),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+
+
+
+handler404 = "accounts.views.page_not_found"
