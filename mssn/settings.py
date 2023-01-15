@@ -32,7 +32,7 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*', 
+    '*',  
     'https://web-production-41f8.up.railway.app/'
 ] 
 

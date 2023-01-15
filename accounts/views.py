@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from post.models import Post
+from client.models import Program
 # Create your views here.
 
 
@@ -18,14 +19,13 @@ def forget_password(request):
     return render(request , 'accounts/forget-password.html')
 
 
+def page_not_found(request, exception ):
+    return render(request , 'page_not_found.html')
 
 
 
-def feedback(request):
-    return render(request , 'help/feedback.html')
 
-def faq(request):
-    return render(request , 'help/faq.html')
+
 
 
 def about(request):
